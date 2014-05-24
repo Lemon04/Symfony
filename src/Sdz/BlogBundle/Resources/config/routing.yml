@@ -1,0 +1,15 @@
+HelloTheWorld:
+    pattern:  /hello-world
+    defaults: { _controller: SdzBlogBundle:Blog:index }
+
+sdzblog_accueil:
+    path:      /blog
+    defaults:  { _controller: SdzBlogBundle:Blog:index }
+
+sdzblog_voir:
+    path:      /blog/article/{id}
+    defaults:  { _controller: SdzBlogBundle:Blog:voir }
+
+sdzblog_ajouter:
+    path:      /blog/ajouter
+    defaults:  { _controller: SdzBlogBundle:Blog:ajouter }
