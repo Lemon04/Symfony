@@ -11,16 +11,21 @@ class BlogController extends Controller
 {
   public function indexAction()
   {
-    return $this->render('SdzBlogBundle:Blog:index.html.twig', array('nom' => 'winzou'));
+    // Récupération du service
+    $mailer = $this->get('mailer');
+
+    // Création de l'e-mail : le service mailer utilise SwiftMailer, donc nous créons une instance de Swift_Message
+    $message = \Swift_Message::newInstance()
+      ->setSubject('Hello zéro !')
+      ->setFrom('tutorial@symfony2.com')
+      ->setTo('votre@email.com')
+      ->setBody('Coucou, voici un email que vous venez de recevoir !');
+
+    // Retour au service mailer, nous utilisons sa méthode « send() » pour envoyer notre $message
+    $mailer->send($message);
+
+    // N'oublions pas de retourner une réponse, par exemple une page qui afficherait « L'e-mail a bien été envoyé »
+    return new Response('Email bien envoyé');
   }
 
-  public function voirAction($id)
-  {
-    return new Response("Affichage de l'article d'id : ".$id.".");
-  }
-    public function voirSlugAction($slug, $annee, $format)
-  {
-    // Ici le contenu de la méthode
-    return new Response("On pourrait afficher l'article correspondant au slug '".$slug."', créé en ".$annee." et au format ".$format.".");
-  }
 }
