@@ -1,15 +1,28 @@
-HelloTheWorld:
-    pattern:  /hello-world
-    defaults: { _controller: SdzBlogBundle:Blog:index }
-
 sdzblog_accueil:
-    path:      /blog
-    defaults:  { _controller: SdzBlogBundle:Blog:index }
+    path:      /{page}
+    defaults:  { _controller: SdzBlogBundle:Blog:index, page: 1 }
+    requirements:
+        page:  \d*
 
 sdzblog_voir:
-    path:      /blog/article/{id}
+    path:      /article/{id}
     defaults:  { _controller: SdzBlogBundle:Blog:voir }
+    requirements:
+        id:  \d+
 
 sdzblog_ajouter:
-    path:      /blog/ajouter
-    defaults:  { _controller: SdzBlogBundle:Blog:ajouter }
+    path:      /ajouter
+    defaults:  { _controller: SdzBlogBundle:Blog:ajouter }
+
+sdzblog_modifier:
+    path:      /modifier/{id}
+    defaults:  { _controller: SdzBlogBundle:Blog:modifier }
+    requirements:
+        id:  \d+
+
+sdzblog_supprimer:
+    path:      /supprimer/{id}
+    defaults:  { _controller: SdzBlogBundle:Blog:supprimer }
+    requirements:
+        id:  \d+
+
